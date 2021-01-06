@@ -90,10 +90,11 @@ export default {
                 this.user = response.data.user;
                 this.isLoading = false;
                 this.editData = !this.editData;
+                document.getElementById('navbarUsername').innerText = this.user.username;
             }).catch((error) => {
                 this.error = error;
                 this.isLoading = false;
-                });
+            });
         }
     }
 }

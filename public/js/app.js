@@ -2032,6 +2032,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.user = response.data.user;
                   _this.isLoading = false;
                   _this.editData = !_this.editData;
+                  document.getElementById('navbarUsername').innerText = _this.user.username;
                 })["catch"](function (error) {
                   _this.error = error;
                   _this.isLoading = false;
