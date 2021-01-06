@@ -1,7 +1,6 @@
 <template>
   <div v-if="user">
-      <h1 class="text-center">{{user.name}}</h1>
-      <h2 class="text-center text-muted">{{user.email}}</h2>
+      <h1 class="text-center">{{user.username}} <span class="h2 text-muted">{{user.name}}</span></h1>
       <div v-for="link in user.links" v-bind:key="link.id">
           <div class="card my-3">
               <div class="card-header text-center">
@@ -16,7 +15,6 @@
               </div>
           </div>
       </div>
-      <!-- {{user}} -->
   </div>
   <div v-else>
       <h1 class="text-center">404 Not Found!</h1>
@@ -31,7 +29,7 @@ export default {
         }
     },
     mounted () {
-        this.user = this.$attrs.data.original.user[0];
+        this.user = this.$attrs.data.original.user;
     }
 }
 </script>

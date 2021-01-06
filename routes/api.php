@@ -32,4 +32,12 @@ Route::prefix('/v1')->group(function (){
         Route::delete('/{id}', 'LinksController@destroy');
     });
 
+    Route::prefix('user')->group(function (){
+        // Route::get('/', '');
+        // Route::post('/add', '@store');
+        // Route::get('/{id}', '@show');
+        Route::put('/{id}', 'UserController@update');
+        // Route::delete('/{id}', '@destroy');
+    });
+
 });

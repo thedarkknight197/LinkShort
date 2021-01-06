@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Link as UserLink;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class LinksController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,12 +35,7 @@ class LinksController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $link = new UserLink($data);
-
-        $link->save();
-
-        return response()->json(["msg" => "E'stato creato il link ".$link->id]);
+        //
     }
 
     /**
@@ -52,31 +46,7 @@ class LinksController extends Controller
      */
     public function show($id)
     {
-        $link = UserLink::findOrFail($id);
-
-        return response()->json(["link" => $link]);
-    }
-
-    public static function getByEmail($email)
-    {
-        $link = User::where('email', '=', $email)->get();
-
-        return response()->json(["user" => $link]);
-    }
-
-    public static function getByUsername($username)
-    {
-        $link = User::where('username', '=', $username)->first();
-
-        return response()->json(["user" => $link]);
-    }
-
-
-    public function all()
-    {
-        $link = UserLink::get();
-
-        return response()->json(["links" => $link]);
+        //
     }
 
     /**
@@ -87,6 +57,7 @@ class LinksController extends Controller
      */
     public function edit($id)
     {
+        //
     }
 
     /**
@@ -98,14 +69,14 @@ class LinksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = request()->all();
-        $link =  UserLink::findOrFail($id);
+        $data = $request->all();
 
-        $link->fill($data);
+        $user = User::find($id);
+        $user->fill($data);
 
-        $link->save();
+        $user->save();
 
-        return response()->json(["link" => UserLink::findOrFail($link->id)]);
+        return response()->json(["msg"=>"user ".$user->id." updated with success!", "user"=>$user]);
     }
 
     /**
@@ -116,7 +87,6 @@ class LinksController extends Controller
      */
     public function destroy($id)
     {
-        $status = UserLink::findOrFail($id)->delete();
-        response()->json($status? ["msg"=>"Cancellato con successo ".$id] : ["msg" => "C'è stato un problema con la tua richiesta!"]);
+        //
     }
 }

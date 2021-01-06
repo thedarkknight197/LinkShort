@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class PublicUserController extends Controller
 {
-    public function __invoke($email){
-        $user = LinksController::getByEmail($email);
+    public function __invoke($username){
+        $user = LinksController::getByUsername($username);
         return view('pages.public.user.index',  ['user' => $user]);
     }
 }
