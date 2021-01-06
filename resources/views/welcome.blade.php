@@ -81,8 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {{-- {{env('APP_NAME')}}  --}}
-                    Pippo
+                    {{env('APP_NAME')}}
                 </div>
 
                 <div class="links">
