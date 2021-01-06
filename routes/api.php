@@ -23,6 +23,7 @@ Route::prefix('/v1')->group(function (){
 
     Route::get('/user/{email}', 'LinksController@getByEmail');
 
+    // group route api links
     Route::prefix('link')->group(function (){
         Route::get('/', 'LinksController@all');
         Route::post('/add', 'LinksController@store');
