@@ -84,7 +84,7 @@ export default {
         },
         getUser(username){
             window.axios.get('/api/v1/user/username/'+username).then(r=>{
-                // this.isLoading ? '' : this.isLoading = true;
+                this.isLoading ? '' : this.isLoading = true;
                 this.user = r.data.user;
                 this.linkToEdit = null;
                 this.isLoading = false;

@@ -2107,7 +2107,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       window.axios.get('/api/v1/user/username/' + username).then(function (r) {
-        // this.isLoading ? '' : this.isLoading = true;
+        _this3.isLoading ? '' : _this3.isLoading = true;
         _this3.user = r.data.user;
         _this3.linkToEdit = null;
         _this3.isLoading = false;

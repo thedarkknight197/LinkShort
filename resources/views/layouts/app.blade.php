@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @if ($user!=null)
+    @if (isset($user))
     <title> {{(json_decode(json_encode($user))->original->user->username)}}|{{ config('app.name', 'Laravel') }}</title>
     <meta name="description" content="Short link of user: {{(json_decode(json_encode($user))->original->user->username)}} © developed by: mvbdev.cloud">
     @else

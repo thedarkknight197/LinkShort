@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{env('APP_NAME')}}</title>
+        <meta name="description" content="Welcome to ShortLink! A link creator for pretty bio! © developed by: mvbdev.cloud">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
