@@ -39335,7 +39335,7 @@ var render = function() {
           "data-target": "#addLink"
         }
       },
-      [_vm._v("Launch demo modal")]
+      [_vm._v("Aggiungi link")]
     ),
     _vm._v(" "),
     _c(

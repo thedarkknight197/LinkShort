@@ -1,6 +1,6 @@
 <template>
   <div>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLink">Launch demo modal</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLink">Aggiungi link</button>
         <div class="modal fade" id="addLink" tabindex="-1" aria-labelledby="addLink" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
