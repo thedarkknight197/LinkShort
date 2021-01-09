@@ -7,7 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    @if ($user!=null)
+    <title> {{(json_decode(json_encode($user))->original->user->username)}}|{{ config('app.name', 'Laravel') }}</title>
+    @else
+        <title>{{ config('app.name', 'Laravel') }}</title>
+    @endif
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
