@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/manage-links', 'HomeController@manageLinks')->name('manageLinks');
+});
 
 Route::get('/{username}', 'PublicUserController')->name('publicUserView');

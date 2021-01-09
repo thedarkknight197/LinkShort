@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('/v1')->group(function (){
 
     Route::get('/user/{email}', 'LinksController@getByEmail');
+    Route::get('/user/username/{username}', 'LinksController@getByUsername');
 
     // group route api links
     Route::prefix('link')->group(function (){

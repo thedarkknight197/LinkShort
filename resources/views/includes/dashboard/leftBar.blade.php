@@ -1,6 +1,4 @@
-<ul>
-    {{-- @for ($i = 0; $i < 100; $i++)
-        <li>Link {{$i}}</li>
-    @endfor --}}
-    <li><a href="{{route('home')}}">Profilo</a></li>
-</ul>
+<div class="list-group">
+    <div class="list-group-item"><a href="{{route('manageLinks')}}">Menage Links</a></div>
+    <div class="list-group-item"><a href="{{route('home')}}">Profilo</a></div>
+</div>

@@ -27,4 +27,10 @@ class HomeController extends Controller
         $user = LinksController::getByUsername(Auth::user()->username);
         return view('home', ["user" => $user]);
     }
+
+    public function manageLinks()
+    {
+        $user = LinksController::getByUsername(Auth::user()->username);
+        return view('pages.private.user.manageLink', ["user" => $user]);
+    }
 }
