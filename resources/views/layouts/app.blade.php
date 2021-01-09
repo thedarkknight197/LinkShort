@@ -9,9 +9,12 @@
 
     @if ($user!=null)
     <title> {{(json_decode(json_encode($user))->original->user->username)}}|{{ config('app.name', 'Laravel') }}</title>
+    <meta name="description" content="Short link of user: {{(json_decode(json_encode($user))->original->user->username)}} © developed by: mvbdev.cloud">
     @else
         <title>{{ config('app.name', 'Laravel') }}</title>
+        <meta name="description" content="Welcome to ShortLink! A link creator for pretty bio! © developed by: mvbdev.cloud">
     @endif
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
