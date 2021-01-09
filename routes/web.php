@@ -20,8 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/manage-links', 'HomeController@manageLinks')->name('manageLinks');
+    Route::get('/', 'HomeController@manageLinks')->name('home');
+    Route::get('/manage-profile', 'HomeController@manageProfile')->name('manageProfile');
 });
 
 Route::get('/{username}', 'PublicUserController')->name('publicUserView');

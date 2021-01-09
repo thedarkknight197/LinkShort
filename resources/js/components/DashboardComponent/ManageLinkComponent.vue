@@ -18,11 +18,11 @@
             </div>
         </div>
         <div v-else>
-            <div>
+            <div class="my-3 bg-selected">
                 <loading :active.sync="isLoading"
                         :can-cancel="false"
                         :is-full-page="false"></loading>
-                <p>Edit Link:</p>
+                <!-- <p>Edit Link:</p> -->
                 <label for="title">Titolo:</label>
                 <input type="text" class="form-control" id="title" name="title" ref="title" :value="link.title">
                 <label for="link">Link:</label>
@@ -100,5 +100,10 @@ export default {
     right: 10px;
     display: block;
     top: 9px;
+}
+
+.bg-selected{
+    background: rgba(0,0,0,.15);
+    padding: 1.5%;
 }
 </style>

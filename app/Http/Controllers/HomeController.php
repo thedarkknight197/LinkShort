@@ -22,10 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function manageProfile()
     {
         $user = LinksController::getByUsername(Auth::user()->username);
-        return view('home', ["user" => $user]);
+        return view('pages.private.user.userManage', ["user" => $user]);
     }
 
     public function manageLinks()

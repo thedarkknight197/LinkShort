@@ -6797,7 +6797,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.edit-btn[data-v-7465b883]{\n    position: absolute;\n    right: 10px;\n    display: block;\n    top: 9px;\n}\n", ""]);
+exports.push([module.i, "\n.edit-btn[data-v-7465b883]{\n    position: absolute;\n    right: 10px;\n    display: block;\n    top: 9px;\n}\n.bg-selected[data-v-7465b883]{\n    background: rgba(0,0,0,.15);\n    padding: 1.5%;\n}\n", ""]);
 
 // exports
 
@@ -39604,6 +39604,7 @@ var render = function() {
               : _c("div", [
                   _c(
                     "div",
+                    { staticClass: "my-3 bg-selected" },
                     [
                       _c("loading", {
                         attrs: {
@@ -39617,8 +39618,6 @@ var render = function() {
                           }
                         }
                       }),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("Edit Link:")]),
                       _vm._v(" "),
                       _c("label", { attrs: { for: "title" } }, [
                         _vm._v("Titolo:")
