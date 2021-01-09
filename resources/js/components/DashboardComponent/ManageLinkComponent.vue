@@ -1,5 +1,5 @@
 <template>
-<div v-if="user">
+<div v-if="user" @updateLinks="getUser">
     <div v-for="link in user.links" v-bind:key="link.id">
         <div v-if="linkToEdit != link.id">
             <loading :active.sync="isLoading"
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-
+import AddLinkComponent from './AddLinkComponent';
 // Import component
 import Loading from 'vue-loading-overlay';
 // Import stylesheet
@@ -55,7 +55,8 @@ export default {
         }
     },
     components: {
-        Loading
+        Loading,
+        AddLinkComponent
     },
     mounted(){
         this.user = this.$attrs.data.original.user;
