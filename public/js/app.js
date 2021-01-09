@@ -39705,8 +39705,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.user
     ? _c("div", [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col" }, [
+        _c("div", [
+          _c("div", { staticClass: "mx-3" }, [
             _c(
               "form",
               [
@@ -39805,7 +39805,7 @@ var render = function() {
           _c("p", { staticClass: "text-danger" }, [_vm._v(_vm._s(_vm.error))])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
+        _c("div", [
           !_vm.editData
             ? _c(
                 "button",

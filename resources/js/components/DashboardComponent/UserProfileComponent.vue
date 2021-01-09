@@ -1,7 +1,7 @@
 <template>
 <div v-if="user">
-    <div class="row">
-        <div class="col">
+    <div>
+        <div class="mx-3">
             <form>
                 <loading :active.sync="isLoading"
                     :can-cancel="false"
@@ -39,7 +39,7 @@
     <div class="row">
         <p class="text-danger">{{error}}</p>
     </div>
-    <div class="row">
+    <div>
         <button class="btn btn-primary" v-if="!editData" v-on:click="edit">Modifica</button>
         <button class="btn btn-danger" v-if="editData" v-on:click="cancel">Annulla</button> <button class="btn btn-primary" v-if="editData" v-on:click="save">Salva</button>
     </div>
