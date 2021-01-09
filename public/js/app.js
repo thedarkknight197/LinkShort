@@ -1984,6 +1984,8 @@ __webpack_require__.r(__webpack_exports__);
       window.axios.post('/api/v1/link/add', this.link).then(function (response) {
         _this.$parent.$children[1].getUser(_this.$attrs.data.original.user.username);
 
+        _this.link.title = '';
+        _this.link.link = '';
         $('#addLink').modal('hide');
       })["catch"](function (e) {
         _this.error = e;

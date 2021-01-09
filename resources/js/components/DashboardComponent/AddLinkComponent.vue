@@ -56,6 +56,8 @@ export default {
         saveLink(){
             window.axios.post('/api/v1/link/add', this.link).then((response)=>{
                 this.$parent.$children[1].getUser(this.$attrs.data.original.user.username);
+                this.link.title='';
+                this.link.link='';
                 $('#addLink').modal('hide');
             }).catch((e)=>{this.error = e});
         }
