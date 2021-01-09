@@ -16,7 +16,7 @@
                     </span>
                 </div>
                 <div class="form-group row">
-                    <label for="username" class="pr-3">Username: </label>
+                    <label for="username" class="">Username: {{this.$attrs.link}}/</label>
                     <span v-if="editData">
                         <input type="text" class="form-control" name="name" id="name" ref="username" :value="user.username" />
                     </span>

@@ -39746,11 +39746,9 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    { staticClass: "pr-3", attrs: { for: "username" } },
-                    [_vm._v("Username: ")]
-                  ),
+                  _c("label", { attrs: { for: "username" } }, [
+                    _vm._v("Username: " + _vm._s(this.$attrs.link) + "/")
+                  ]),
                   _vm._v(" "),
                   _vm.editData
                     ? _c("span", [
