@@ -2189,6 +2189,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 // Import component
  // Import stylesheet
 
@@ -2199,7 +2201,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       user: null,
       editData: false,
       error: '',
-      isLoading: false
+      isLoading: false,
+      msg: ''
     };
   },
   components: {
@@ -2209,6 +2212,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.user = this.$attrs.data.original.user;
   },
   methods: {
+    copyToClipboard: function copyToClipboard() {
+      var _this = this;
+
+      var el = document.createElement('textarea');
+      el.value = this.$refs.linkToCopy;
+      el.setAttribute('readonly', '');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      var selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      if (selected) {
+        document.getSelection().removeAllRanges();
+        document.getSelection().addRange(selected);
+      }
+
+      this.msg = " Copied!";
+      setInterval(function () {
+        _this.msg = '';
+      }, 3000);
+    },
     edit: function edit() {
       this.editData = !this.editData;
     },
@@ -2226,25 +2253,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.updateData(user);
     },
     updateData: function updateData(user) {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                window.axios.put('/api/v1/user/' + _this.user.id, {
+                window.axios.put('/api/v1/user/' + _this2.user.id, {
                   name: user.name,
                   username: user.username,
                   email: user.email
                 }).then(function (response) {
-                  _this.user = response.data.user;
-                  _this.isLoading = false;
-                  _this.editData = !_this.editData;
-                  document.getElementById('navbarUsername').innerText = _this.user.username;
+                  _this2.user = response.data.user;
+                  _this2.isLoading = false;
+                  _this2.editData = !_this2.editData;
+                  document.getElementById('navbarUsername').innerText = _this2.user.username;
                 })["catch"](function (error) {
-                  _this.error = error;
-                  _this.isLoading = false;
+                  _this2.error = error;
+                  _this2.isLoading = false;
                 });
 
               case 1:
@@ -39705,97 +39732,149 @@ var render = function() {
   return _vm.user
     ? _c("div", [
         _c("div", [
-          _c("div", { staticClass: "mx-3" }, [
-            _c(
-              "form",
-              [
-                _c("loading", {
-                  attrs: {
-                    active: _vm.isLoading,
-                    "can-cancel": false,
-                    "is-full-page": false
-                  },
-                  on: {
-                    "update:active": function($event) {
-                      _vm.isLoading = $event
-                    }
+          _c(
+            "div",
+            { staticClass: "mx-3" },
+            [
+              _c("loading", {
+                attrs: {
+                  active: _vm.isLoading,
+                  "can-cancel": false,
+                  "is-full-page": false
+                },
+                on: {
+                  "update:active": function($event) {
+                    _vm.isLoading = $event
                   }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c("label", { staticClass: "pr-3", attrs: { for: "name" } }, [
-                    _vm._v("Name:")
-                  ]),
-                  _vm._v(" "),
-                  _vm.editData
-                    ? _c("span", [
-                        _c("input", {
-                          ref: "name",
-                          staticClass: "form-control",
-                          attrs: { type: "text", name: "name", id: "name" },
-                          domProps: { value: _vm.user.name }
-                        })
-                      ])
-                    : _c("span", [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(_vm.user.name) +
-                            "\n                    "
-                        )
-                      ])
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c("label", { staticClass: "pr-3", attrs: { for: "name" } }, [
+                  _vm._v("Name:")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c("label", { attrs: { for: "username" } }, [
-                    _vm._v("Username: " + _vm._s(this.$attrs.link) + "/")
-                  ]),
-                  _vm._v(" "),
-                  _vm.editData
-                    ? _c("span", [
-                        _c("input", {
-                          ref: "username",
-                          staticClass: "form-control",
-                          attrs: { type: "text", name: "name", id: "name" },
-                          domProps: { value: _vm.user.username }
-                        })
+                _vm.editData
+                  ? _c("span", [
+                      _c("input", {
+                        ref: "name",
+                        staticClass: "form-control",
+                        attrs: { type: "text", name: "name", id: "name" },
+                        domProps: { value: _vm.user.name }
+                      })
+                    ])
+                  : _c("span", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.user.name) +
+                          "\n                    "
+                      )
+                    ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  { staticClass: "my-2", attrs: { for: "username" } },
+                  [_vm._v("Username:")]
+                ),
+                _vm._v(" "),
+                _vm.editData
+                  ? _c("span", [
+                      _c("input", {
+                        ref: "username",
+                        staticClass: "form-control",
+                        attrs: { type: "text", name: "name", id: "name" },
+                        domProps: { value: _vm.user.username }
+                      })
+                    ])
+                  : _c("span", { attrs: { id: "linkToCopy" } }, [
+                      _c(
+                        "a",
+                        {
+                          ref: "linkToCopy",
+                          attrs: {
+                            href: this.$attrs.link + "/" + _vm.user.username,
+                            target: "_blank",
+                            rel: "noopener noreferrer"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(" " + this.$attrs.link) +
+                              "/" +
+                              _vm._s(_vm.user.username) +
+                              "\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: { click: _vm.copyToClipboard }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "w-6 h-6",
+                              attrs: {
+                                width: "30px",
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                xmlns: "http://www.w3.org/2000/svg"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round",
+                                  "stroke-width": "2",
+                                  d:
+                                    "M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "text-primary" }, [
+                        _vm._v(_vm._s(_vm.msg))
                       ])
-                    : _c("span", [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(_vm.user.username) +
-                            "\n                    "
-                        )
-                      ])
+                    ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c("label", { staticClass: "pr-3", attrs: { for: "email" } }, [
+                  _vm._v("E-mail: ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    { staticClass: "pr-3", attrs: { for: "email" } },
-                    [_vm._v("E-mail: ")]
-                  ),
-                  _vm._v(" "),
-                  _vm.editData
-                    ? _c("span", [
-                        _c("input", {
-                          ref: "email",
-                          staticClass: "form-control",
-                          attrs: { type: "email", name: "name", id: "name" },
-                          domProps: { value: _vm.user.email }
-                        })
-                      ])
-                    : _c("span", [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(_vm.user.email) +
-                            "\n                    "
-                        )
-                      ])
-                ])
-              ],
-              1
-            )
-          ])
+                _vm.editData
+                  ? _c("span", [
+                      _c("input", {
+                        ref: "email",
+                        staticClass: "form-control",
+                        attrs: { type: "email", name: "name", id: "name" },
+                        domProps: { value: _vm.user.email }
+                      })
+                    ])
+                  : _c("span", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.user.email) +
+                          "\n                    "
+                      )
+                    ])
+              ])
+            ],
+            1
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [

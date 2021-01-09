@@ -2,7 +2,7 @@
 <div v-if="user">
     <div>
         <div class="mx-3">
-            <form>
+            <!-- <form> -->
                 <loading :active.sync="isLoading"
                     :can-cancel="false"
                     :is-full-page="false"></loading>
@@ -16,12 +16,14 @@
                     </span>
                 </div>
                 <div class="form-group row">
-                    <label for="username" class="">Username: {{this.$attrs.link}}/</label>
+                    <label for="username" class="my-2">Username:</label>
                     <span v-if="editData">
                         <input type="text" class="form-control" name="name" id="name" ref="username" :value="user.username" />
                     </span>
-                    <span v-else>
-                        {{user.username}}
+                    <span id="linkToCopy" v-else>
+                        <a :href="this.$attrs.link+'/'+user.username" target="_blank" rel="noopener noreferrer" ref="linkToCopy">
+                            {{' '+this.$attrs.link}}/{{user.username}}
+                        </a> <button class="btn btn-primary" @click="copyToClipboard"><svg class="w-6 h-6" width="30px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg></button> <span class="text-primary">{{msg}}</span>
                     </span>
                 </div>
                 <div class="form-group row">
@@ -33,7 +35,7 @@
                         {{user.email}}
                     </span>
                 </div>
-            </form>
+            <!-- </form> -->
         </div>
     </div>
     <div class="row">
@@ -59,7 +61,8 @@ export default {
             user: null,
             editData: false,
             error: '',
-            isLoading: false
+            isLoading: false,
+            msg: ''
         }
     },
     components:{
@@ -69,6 +72,26 @@ export default {
         this.user = this.$attrs.data.original.user;
     },
     methods:{
+        copyToClipboard(){
+            const el = document.createElement('textarea');
+            el.value = this.$refs.linkToCopy;
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';
+            document.body.appendChild(el);
+            const selected =  document.getSelection().rangeCount > 0  ? document.getSelection().getRangeAt(0) : false;
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            if (selected) {
+                document.getSelection().removeAllRanges();
+                document.getSelection().addRange(selected);
+            }
+            this.msg=" Copied!"
+            setInterval(() => {
+                this.msg = '';
+            }, 3000);
+        },
         edit(){
             this.editData = !this.editData;
         },
