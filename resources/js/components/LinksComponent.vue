@@ -30,6 +30,7 @@ export default {
     },
     mounted () {
         this.user = this.$attrs.data.original.user;
+        this.user.links.reverse();
     }
 }
 </script>
